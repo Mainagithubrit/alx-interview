@@ -20,14 +20,17 @@ def pascal_triangle(n):
         # The first number in every row is always 1
         current_row.append(1)
         # Fill in the middle numbers
-        if x > 1:
+        if x > 0: # Calculate middle numbers if x > 0
+            if x > 1:
             # Only calculate middle numbers if it's not the first two rows
-            last_row = pascals_triangle[x - 1]
-            for j in range(1, x):
-                # Each number is the sum of the two numbers above it
-                current_row.append(last_row[j - 1] + last_row[j])
-    # The last number in every row is always 1
-        current_row.append(1)
+                last_row = pascals_triangle[x - 1]
+                for j in range(1, x):
+                    # Each number is the sum of the two numbers above it
+                    current_row.append(last_row[j - 1] + last_row[j])
+    
+    # The last number in every row is always 1 (except the first row)
+        if x > 0:
+            current_row.append(1)
     # Add the current row to the triangle
         pascals_triangle.append(current_row)
 
