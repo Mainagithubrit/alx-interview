@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 """A method with a number n locked boxes, each box is numbered from 0
 each box contains keys to open other boxes
