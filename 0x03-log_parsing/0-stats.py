@@ -2,6 +2,8 @@
 import sys
 import re
 
+"""A funtion that reads stdin line by line"""
+
 
 def print_stats():
     """Prits the current statistics"""
