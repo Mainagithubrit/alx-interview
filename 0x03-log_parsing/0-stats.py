@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """
 This module processes log entries from a web server.
 
@@ -9,33 +10,38 @@ statistics such as total file size and counts of HTTP status codes.
 import sys
 import re
 
-# Initialize counters
-total_size = 0
-status_count = {
-    200: 0,
-    301: 0,
-    400: 0,
-    401: 0,
-    403: 0,
-    404: 0,
-    405: 0,
-    500: 0
+
+def print_msg(dict_sc, total_file_size):
+    """
+    Method to print the statistics.
+
+    Args:
+        dict_sc: dict of status codes
+        total_file_size: total size of the files
+    Returns:
+        Nothing
+    """
+    print("File size: {}".format(total_file_size))
+    for key, val in sorted(dict_sc.items()):
+        if val != 0:
+            print("{}: {}".format(key, val))
+
+
+total_file_size = 0
+counter = 0
+dict_sc = {
+    "200": 0,
+    "301": 0,
+    "400": 0,
+    "401": 0,
+    "403": 0,
+    "404": 0,
+    "405": 0,
+    "500": 0
 }
-line_count = 0
-
-
-def print_stats():
-    """Print the current statistics."""
-    print("File size: {}".format(total_size))
-    for status in sorted(status_count):
-        if status_count[status] > 0:
-            print("{}: {}".format(status, status_count[status]))
-
 
 try:
     for line in sys.stdin:
-        line_count += 1  # Increment the line count
-
         # Regex to match the expected log format
         match = re.match(
             r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \['
@@ -43,19 +49,27 @@ try:
             r'(\d{3}) (\d+)',
             line
         )
+
         if match:
+            counter += 1
+
             # Extract status code and file size
-            status_code = int(match.group(3))
+            status_code = match.group(3)
             file_size = int(match.group(4))
 
-            # Update counters
-            total_size += file_size
-            if status_code in status_count:
-                status_count[status_code] += 1
+            # Update total file size
+            total_file_size += file_size
 
-            # Print stats after processing every line (or every 10 lines)
-            if line_count % 10 == 0:
-            print_stats()
+            # Update status code count
+            if status_code in dict_sc:
+                dict_sc[status_code] += 1
 
-except KeyboardInterrupt:
-    print_stats()
+            # Print statistics every 10 lines
+            if counter == 10:
+                print_msg(dict_sc, total_file_size)
+                # Reset the counter and statistics for the next batch
+                counter = 0
+
+finally:
+    # Print any remaining statistics after processing all input
+    print_msg(dict_sc, total_file_size)
