@@ -14,9 +14,9 @@ def print_stats():
 
 
 # initializing counters
-  7 total_size = 0
-  8 status_count = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
-  9 line_count = 0
+total_size = 0
+status_count = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+line_count = 0
 
 
 try:
