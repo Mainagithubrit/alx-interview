@@ -54,6 +54,7 @@ try:
                 status_count[status_code] += 1
 
             # Print stats after processing every line (or every 10 lines)
+            if line_count % 10 == 0:
             print_stats()
 
 except KeyboardInterrupt:
