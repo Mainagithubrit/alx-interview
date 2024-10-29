@@ -3,18 +3,18 @@ import sys
 import re
 
 
-# initializing counters
-total_size = 0
-status_count = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
-line_count = 0
-
-
 def print_stats():
     """Prits the current statistics"""
     print("File size: {}".format(total_size))
     for status in sorted(status_count):
         if status_count[status] > 0:
             print("{}: {}".format(status, status_count[status]))
+
+
+# initializing counters
+  7 total_size = 0
+  8 status_count = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
+  9 line_count = 0
 
 
 try:
