@@ -9,8 +9,7 @@ statistics such as total file size and counts of HTTP status codes.
 import sys
 import re
 
-
-# initializing counters
+# Initialize counters
 total_size = 0
 status_count = {
     200: 0,
@@ -26,7 +25,7 @@ line_count = 0
 
 
 def print_stats():
-    """Prits the current statistics"""
+    """Print the current statistics."""
     print("File size: {}".format(total_size))
     for status in sorted(status_count):
         if status_count[status] > 0:
@@ -35,28 +34,27 @@ def print_stats():
 
 try:
     for line in sys.stdin:
-        line_count += 1
+        line_count += 1  # Increment the line count
 
-        # Regular expression to match the expected log format
+        # Regex to match the expected log format
         match = re.match(
             r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \['
-            r'(.*?)\] "GET /projects/260 HTTP/1.1" (\d{3}) (\d+)', line
+            r'(.*?)\] "GET /projects/260 HTTP/1.1" '
+            r'(\d{3}) (\d+)',
+            line
         )
-
         if match:
             # Extract status code and file size
             status_code = int(match.group(3))
             file_size = int(match.group(4))
 
-            # update counters
+            # Update counters
             total_size += file_size
             if status_code in status_count:
                 status_count[status_code] += 1
 
-        # Print stats every 10 lines
-        if line_count % 10 == 0:
+            # Print stats after processing every line (or every 10 lines)
             print_stats()
-
 
 except KeyboardInterrupt:
     print_stats()
