@@ -1,8 +1,13 @@
 #!/usr/bin/python3
+"""
+This module processes log entries from a web server.
+
+It reads log lines from standard input, parses them, and calculates
+statistics such as total file size and counts of HTTP status codes.
+"""
+
 import sys
 import re
-
-"""A funtion that reads stdin line by line"""
 
 
 def print_stats():
