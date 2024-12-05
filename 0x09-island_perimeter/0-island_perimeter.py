@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """An Island in 2D matrices"""
 
+
 def island_perimeter(grid):
     """This program calculate the perimeter of an Island"""
     perimeter = 0
@@ -13,7 +14,7 @@ def island_perimeter(grid):
             if grid[r][c] == 1:
                 perimeter += 4
 
-                if r > 0 and grid[r -1][c] == 1:
+                if r > 0 and grid[r - 1][c] == 1:
                     perimeter -= 2
 
                 if c > 0 and grid[r][c - 1] == 1:
