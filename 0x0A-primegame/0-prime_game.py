@@ -1,8 +1,9 @@
 #!/usr/bin/python3
+"""A Prime Game"""
 
 
 def isWinner(x, nums):
-    """A prime Game"""
+    """Checks who is the winner"""
 
     def sieve_of_eratosthenes(max_n):
         """A function that sieves through numbers to find prime
