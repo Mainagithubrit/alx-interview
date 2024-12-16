@@ -5,6 +5,9 @@ def isWinner(x, nums):
     """A prime Game"""
 
     def sieve_of_eratosthenes(max_n):
+        """A function that sieves through numbers to find prime
+        numbers and the numbers divisible by them"""
+
         primes = [True] * (max_n + 1)
         primes[0] = primes[1] = False  # 0 and 1 are not prime
         for i in range(2, int(max_n**0.5) + 1):
