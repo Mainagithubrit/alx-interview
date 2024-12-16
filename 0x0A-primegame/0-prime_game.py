@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+""" A Prime Game"""
+
+
 def sieve_of_eratosthenes(max_n):
     """
     Generate a list where primes[i] is True if i is a prime number.
