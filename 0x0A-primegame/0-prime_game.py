@@ -9,6 +9,9 @@ def isWinner(x, nums):
 
     def sieve_of_eratosthenes(max_n):
         """ A function that sieves through numbers"""
+        if max_n < 2:
+            return [False] * (max_n + 1)
+
         primes = [True] * (max_n + 1)
         primes[0] = primes[1] = False
         for i in range(2, int(max_n**0.5) + 1):
